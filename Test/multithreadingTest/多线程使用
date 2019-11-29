@@ -1,0 +1,31 @@
+高并发   三块知识点  synchronized/ jdk提供同步容器 concurrentMap等等 /ThreadPool executor
+
+
+
+1. 多线程 如何 启动
+  继承Thread类 实现 Runnable接口
+
+  new 该类.start()方法
+
+2.synchronized 关键字
+
+
+ synchronized 是给对象加锁,     若是静态方法  synchronized  方法
+    列如    public static void m(){
+                synchronized(T.class)// 不能使用synchronized(this)
+                count --;
+        }
+
+3. 同步方法可以调用另外一个同步方法
+
+
+4,volatile 具有可见性,synchronized  既保证原子性 又保证可见性,若是不想用       Demo ,Volatile001Test  可见性Demo visible001Test
+
+
+5,现在 一需求   一集合提供add和size方法有两个线程, 一个线程执行++操作,另一个线程在第一个线程将数等于8的时候 线程2提示结束   这里使用 CountDownLatch (门闩)   Demo KeepWatch001Test
+
+
+6.ReentrantLock  可重入锁    ReentrantLock2Demo
+
+
+7.解决脏读问题,copyOnWrite

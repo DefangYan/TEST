@@ -1,0 +1,16 @@
+@startuml
+start
+->
+:/api/user/v1/role/updateRole;
+->
+:根据参数Id查找Role对象role;
+->
+if(role为null或者role.getDeleted为已删除状态)then(Y)
+:抛出异常;
+else(N)
+:设置role属性,保存至role表;
+:updateRolePermissionByRoleId;
+endif
+:返回true;
+end
+@enduml

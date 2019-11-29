@@ -1,0 +1,29 @@
+@startuml
+
+start
+->
+:api/user/v1/role/create;
+->
+if(req.getCustomerId为null)then(Y)
+:根据Header请求头中的信息获取操作者,设置customerId;
+else(N)
+:执行createRole方法;
+->
+:创建角色Role对象;
+->
+:设置参数保存至role表;
+    ->
+    if(req.getPermissionIds()不为null)then(y)
+    :save,permissionid,roleId到表role_permission;
+    endif
+    ->
+    if(req.getUserIds()不为null)then(y)
+    :根据userId查出qxUserCustomer对象;
+    :saveUserRole,表qx_user_role;
+    endif
+->
+:返回roleId;
+endif
+end
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+1042服务 ->1042服务:updateRole
+group updateRole
+database role
+1042服务 -> role:设置role参数保存至表role
+1042服务 -> 1042服务:updateRolePermissionByRoleId
+    group updateRolePermissionByRoleId
+        database role_permission
+        1042服务 -> role_permission: 根据roleId,state查询rolePermissions对象
+        1042服务 -> 1042服务 :讲请求参数里的PermissionIds存入List中返回permissionList
+        1042服务 -> 1042服务 :删除多余的rolePermission
+        1042服务 -> role_permission:添加新的Permission
+
+    end
+end
+
+
+@enduml

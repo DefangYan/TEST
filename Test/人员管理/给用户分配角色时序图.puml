@@ -1,0 +1,10 @@
+@startuml
+1042服务 -> 1042服务roleService:addUserRole()方法
+group addUserRole
+database qx_user_role
+database qx_user_customer
+1042服务roleService -> 1042服务roleService:saveUserRole()方法
+1042服务roleService -> qx_user_role:保存至表qx_user_role
+end
+1042服务 <- 1042服务roleService:返回布尔型
+@enduml

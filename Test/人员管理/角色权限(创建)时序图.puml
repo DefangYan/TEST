@@ -1,0 +1,14 @@
+@startuml
+1042服务 -> 1042服务RoleService:执行createRole方法
+group createRole()
+    database role
+    database role_permission
+    database qx_user_role
+    1042服务RoleService -> role :保存Role对象
+    1042服务RoleService -> rolePermission:保存rolePermission对象
+    1042服务RoleService -> QxUserRole:保存QxUserRole对象
+end
+
+1042服务 <- 1042服务RoleService:返回roleId
+
+@enduml

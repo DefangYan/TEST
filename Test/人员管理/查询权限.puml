@@ -1,0 +1,26 @@
+@startuml
+start
+->
+:/api/user/v1/role/getRoles 查询权限;
+->
+:getRoles();
+->
+:获取操作者信息;
+->
+:根据操作者信息获取QxLoginMode;
+->
+:查询群星用户对象operatorUser;
+if(operatorUser是否为null)then(Y)
+:抛出异常;
+endif
+:根据操作者userId,currentCustomerId获取QxUserCustomer对象;
+if(请求参数req.getFilterPermission不为mull且req.getFilterPermission为true)then(y)
+:查询superAdmin;
+    if(superAdmin为false且操作者不为管理员)then(Y)
+    :抛出异常;
+    endif
+endif
+:根据DeleteFlag,roleTypes,RoleIds查询出角色权限roleList;
+
+end
+@enduml
