@@ -44,6 +44,7 @@ public class DeadLockTest {
 
                     synchronized (o1){
                         System.out.println("这是lock1调用o1");
+                        System.out.println("testOver");
                     }
                 }
 
