@@ -10,7 +10,9 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ThreadTest extends Thread {
     //private int count = 10;
-
+public void a(){
+    System.out.println("bb" );
+}
 //    @Override
 //    public synchronized void run() {
 //       // count --;
